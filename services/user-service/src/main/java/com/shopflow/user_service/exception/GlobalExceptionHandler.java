@@ -1,5 +1,6 @@
 package com.shopflow.user_service.exception;
 
+import com.shopflow.user_service.exception.UnauthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -86,6 +87,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             AuthorizationDeniedException ex, WebRequest request) {
         return buildProblem(HttpStatus.FORBIDDEN, "forbidden", "Access Denied",
                 "You do not have permission to perform this action", request);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ProblemDetail> handleUnauthorized(
+            UnauthorizedException ex, WebRequest request) {
+        return buildProblem(HttpStatus.FORBIDDEN, "forbidden", "Access Denied",
+                ex.getMessage(), request);
     }
 
     // ── 400 Validation errors ─────────────────────────────────────────

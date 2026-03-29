@@ -1,4 +1,4 @@
-package com.shopflow.userservice.repository;
+package com.shopflow.user_service.repository;
 
 import com.shopflow.user_service.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
